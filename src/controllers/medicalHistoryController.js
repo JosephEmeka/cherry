@@ -4,9 +4,9 @@ const { uploadFile } = require('../services/uploadService');
 const viewMedicalHistory = async (req, res) => {
     try {
         const history = await MedicalRecord.findAll({ where: { patientId: req.user.id } });
-        res.json(history);
+        res.status(200).json({ history });
     } catch (error) {
-        res.status(500).json({ message: 'Error retrieving medical history', error });
+        res.status(500).json({ message: 'Error fetching medical history', error });
     }
 };
 
