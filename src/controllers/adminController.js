@@ -1,5 +1,6 @@
 
 const { User, Doctor, Appointment } = require('../models/User');
+const {updateUserRole} = require("./adminController");
 
 // Get all users (admin functionality)
 const getAllUsers = async (req, res) => {
@@ -35,4 +36,32 @@ const getAllAppointments = async (req, res) => {
     }
 };
 
-module.exports = { getAllUsers, assignRole, getAllAppointments };
+
+exports.updateUserRole = async (req, res, next) => {
+    try {
+        const { userId, role } = req.body;
+        const updatedUser = await updateUserRole(userId, role);
+        res.status(200).json(updatedUser);
+    } catch (error) {
+        next(error);
+    }
+};
+
+const createDoctor = async (req, res) => {
+    try {
+        const { name, email, password, specialty } = req.body;
+        const doctor = await User.create({
+            name,
+            email,
+            password,
+            role: 'doctor',
+            specialty
+        });
+        res.status(201).json({ message: 'Doctor created', doctor });
+    } catch (error) {
+        res.status(500).json({ message: 'Error creating doctor', error });
+    }
+};
+
+
+module.exports = { getAllUsers, assignRole, getAllAppointments, createDoctor };
