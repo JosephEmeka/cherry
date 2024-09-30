@@ -4,7 +4,6 @@ const bcrypt = require('bcryptjs');
 
 class User extends Model {}
 
-
 User.init(
     {
         id: {
@@ -39,6 +38,7 @@ User.init(
         profileImage: {
             type: DataTypes.STRING,
             allowNull: true,
+            defaultValue: 'default-profile.png',
         },
         role: {
             type: DataTypes.ENUM('admin', 'doctor', 'patient'),
@@ -83,7 +83,8 @@ User.init(
                 }
             },
             beforeUpdate: async (user) => {
-                if (user.password) {
+
+                if (user.changed('password')) {
                     user.password = await bcrypt.hash(user.password, 10);
                 }
             },
