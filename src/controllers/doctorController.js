@@ -1,4 +1,5 @@
 const doctorService = require('../services/doctorService');
+const {findAll} = require("../models/User");
 
 const getAppointments = async (req, res, next) => {
     try {
@@ -10,7 +11,7 @@ const getAppointments = async (req, res, next) => {
 };
 const viewPatients = async (req, res) => {
     try {
-        const patients = await User.findAll({ where: { assignedDoctor: req.user.id } });
+        const patients = await findAll({ where: { assignedDoctor: req.user.id } });
         res.status(200).json({ patients });
     } catch (error) {
         res.status(500).json({ message: 'Error fetching patients', error });

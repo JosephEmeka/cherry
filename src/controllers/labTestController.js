@@ -12,7 +12,7 @@ const requestLabTest = async (req, res) => {
     }
 };
 
-// Upload lab test result
+
 const uploadLabTestResult = async (req, res) => {
     try {
         const filePath = await uploadFile(req.file);

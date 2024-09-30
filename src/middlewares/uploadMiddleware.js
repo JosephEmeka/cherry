@@ -5,9 +5,9 @@ const cloudinary = require('../config/cloudinaryConfig');
 const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
-        folder: 'user_profile_pictures', // Folder in Cloudinary where images will be stored
-        allowed_formats: ['jpg', 'png', 'jpeg'], // Accepted formats
-        transformation: [{ width: 500, height: 500, crop: 'limit' }] // Image transformation
+        folder: 'user_profile_pictures',
+        allowed_formats: ['jpg', 'png', 'jpeg'],
+        transformation: [{ width: 500, height: 500, crop: 'limit' }]
     },
 });
 

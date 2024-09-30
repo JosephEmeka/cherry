@@ -1,68 +1,11 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/dbConfig');
 const bcrypt = require('bcryptjs');
+const User = require("./User");
 
-const Doctor = sequelize.define('Doctor', {
+ class Doctor extends User {}
 
-
-    id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        primaryKey: true,
-    },
-    name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-
-    middleName:{
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-
-    surname: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-        validate: {
-            isEmail: true,
-        },
-    },
-    password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    profileImage: {
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
-
-
-    role: {
-        type: DataTypes.ENUM('admin', 'doctor', 'patient'),
-        allowNull: false,
-        defaultValue: 'patient',
-    },
-
-    gender: {
-        type: DataTypes.ENUM('male', 'female'),
-        allowNull: true,
-    },
-
-    phoneNumber: {
-        type: DataTypes.STRING,
-        allowNull: true
-    },
-
-    address: {
-        type: DataTypes.STRING,
-        allowNull: true
-    },
+    Doctor.init( {
 
 
     specialty: {
@@ -71,7 +14,7 @@ const Doctor = sequelize.define('Doctor', {
     },
 
     workSchedule: {
-        type: DataTypes.JSON, // Store doctor’s available time slots (e.g., [{day: "Monday", start: "09:00", end: "17:00"}])
+        type: DataTypes.JSON,
         allowNull: true,
     },
 
@@ -91,6 +34,12 @@ const Doctor = sequelize.define('Doctor', {
         allowNull: false
 
     },
-});
+}, {
+        sequelize: User.sequelize,
+        modelName: 'Doctor',
+    }
+);
+
+
     module.exports = Doctor;
 
