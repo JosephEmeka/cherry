@@ -2,7 +2,7 @@
 const { User, Doctor, Appointment } = require('../models/User');
 const {updateUserRole} = require("./adminController");
 
-// Get all users (admin functionality)
+
 const getAllUsers = async (req, res) => {
     try {
         const users = await User.findAll();
@@ -12,7 +12,7 @@ const getAllUsers = async (req, res) => {
     }
 };
 
-// Assign roles to users
+
 const assignRole = async (req, res) => {
     const { userId, role } = req.body;
     try {
@@ -26,7 +26,7 @@ const assignRole = async (req, res) => {
     }
 };
 
-// Get all appointments (admin functionality)
+
 const getAllAppointments = async (req, res) => {
     try {
         const appointments = await Appointment.findAll({ include: [User, Doctor] });

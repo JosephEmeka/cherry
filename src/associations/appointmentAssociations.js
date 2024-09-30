@@ -1,9 +1,8 @@
-// src/associations/appointmentAssociations.js
 
-const Appointment = require('../models/Appointment');
-const LabTest = require('../models/LabTest');
 
-// Define Appointment associations
+const Appointment = require('../models/appointment');
+const LabTest = require('../models/labTest');
+
 const defineAppointmentAssociations = () => {
     Appointment.hasMany(LabTest, { foreignKey: 'appointmentId', as: 'labTests' });
 };

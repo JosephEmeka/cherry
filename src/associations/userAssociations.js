@@ -1,12 +1,10 @@
-// src/associations/userAssociations.js
+const Doctor = require('../models/Doctor');
+const Appointment = require('../models/appointment');
 
-const User = require('../models/User');
-const Appointment = require('../models/Appointment');
 
-// Define User associations
-const defineUserAssociations = () => {
-    User.hasMany(Appointment, { foreignKey: 'doctorId', as: 'appointments' });
-    User.hasMany(Appointment, { foreignKey: 'patientId', as: 'patientAppointments' });
+const defineDoctorAssociations = () => {
+    Doctor.hasMany(Appointment, { foreignKey: 'doctorId', as: 'appointments' });
+    Doctor.hasMany(Appointment, { foreignKey: 'patientId', as: 'patientAppointments' });
 };
 
-module.exports = defineUserAssociations;
+module.exports = defineDoctorAssociations;

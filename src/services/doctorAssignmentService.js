@@ -1,7 +1,7 @@
 const { Doctor, Appointment } = require('../models');
 
 
-// Assign doctor based on availability and condition
+
 const assignDoctor = async (patientId, condition) => {
     try {
         const doctor = await Doctor.findOne({ where: { specialty: condition, available: true } });
