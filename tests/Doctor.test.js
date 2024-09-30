@@ -1,8 +1,8 @@
 
-
-const { doctor, appointment } = require('../src/models/doctor');
-
+//
+// const { Doctor } = require('../src/models/doctor');
 // const { Appointment } = require('../src/models');
+
 // jest.mock('../src/models');
 //
 // describe('assignDoctor', () => {
@@ -49,3 +49,15 @@ const { doctor, appointment } = require('../src/models/doctor');
 // });
 
 
+
+
+let {add} = require("./../src/models/test");
+
+test("Add two numbers", ()=> {
+    let a = 3;
+    let b = 5;
+    let answer = add(a, b);
+    expect(answer).toBe(8);
+
+
+})
