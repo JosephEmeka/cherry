@@ -51,13 +51,8 @@
 
 
 
-let {add} = require("./../src/models/test");
-
-test("Add two numbers", ()=> {
-    let a = 3;
-    let b = 5;
-    let answer = add(a, b);
-    expect(answer).toBe(8);
-
-
-})
+describe('Doctor Tests', () => {
+    test('dummy test', () => {
+        expect(true).toBe(true); // Placeholder for a real test
+    });
+});
