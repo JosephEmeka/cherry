@@ -8,6 +8,6 @@ module.exports = {
 
     },
     transformIgnorePatterns: [
-        "<rootDir>/node_modules/(?!(your-module-name|another-module-name)/)",
+        "<rootDir>/node_modules/(?!(cherry|Babel)/)",
     ],
 };

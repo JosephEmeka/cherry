@@ -14,6 +14,6 @@ defineAppointmentAssociations();
 
 module.exports = {
     User,
-    Appointment,
+    appointment: Appointment,
     LabTest,
 };

@@ -1,10 +1,3 @@
-
-
-
-export async function bookAppointment(id, doctorId, date, type) {
-
-}
-
 const { Doctor } = require('../models/doctor');
 const { Appointment } = require('../models/appointment');
 
