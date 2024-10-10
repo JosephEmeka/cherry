@@ -13,14 +13,6 @@ const pool = new Pool({
 
 const PORT = process.env.PORT || 5000;
 
-// pool.connect()
-//     .then(() => {
-//         console.log('Database connected...');
-//         app.listen(PORT, () => {
-//             console.log(`Server is running on port ${PORT}`);
-//         });
-//     })
-//     .catch(err => console.error('Unable to connect to the database:', err));
 
 
 sequelize.authenticate()
