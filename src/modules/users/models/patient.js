@@ -1,6 +1,5 @@
-
-const { DataTypes } = require('sequelize');
-const BaseUser = require('./User');
+import { DataTypes } from 'sequelize';
+import BaseUser from './user';
 
 class Patient extends BaseUser {}
 
@@ -10,9 +9,9 @@ Patient.init({
         allowNull: true,
     },
     assignedDoctor: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
     },
-    healthInsuranceNumber:{
+    healthInsuranceNumber: {
         type: DataTypes.TEXT,
     },
 }, {
@@ -20,4 +19,4 @@ Patient.init({
     modelName: 'Patient',
 });
 
-module.exports = Patient;
+export default Patient;

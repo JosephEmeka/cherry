@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: cherry
+    env: node
+    plan: free
+    buildCommand: "npm install && npm run build"
+    startCommand: "npm start"
+    autoDeploy: true
+    runtime: node
+    envVars:
+      - key: DATABASE_URL
+        value: "postgresql://postgres:BoKIMJFSPFJDLVYVNmNhkhxYqBjndZez@autorack.proxy.rlwy.net:32460/railway"

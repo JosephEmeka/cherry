@@ -1,6 +1,5 @@
-
-const { DataTypes } = require('sequelize');
-const BaseUser = require('./User');
+import { DataTypes } from 'sequelize';
+import BaseUser from './user';
 
 class Admin extends BaseUser {}
 
@@ -10,10 +9,9 @@ Admin.init({
         allowNull: false,
         defaultValue: 'regular',
     },
-
 }, {
     sequelize: BaseUser.sequelize,
     modelName: 'Admin',
 });
 
-module.exports = Admin;
+export default Admin;

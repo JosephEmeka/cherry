@@ -1,7 +1,7 @@
-const { Wallet, Transaction } = require('../models');
-const { initializePayment } = require('../services/paymentService');
+import { Wallet } from '../models/wallet.js';
+import { initializePayment } from '../services/paymentService.js';
 
-const addFunds = async (req, res) => {
+ const addFunds = async (req, res) => {
     const { amount } = req.body;
     try {
         const paymentLink = await initializePayment(req.user.email, amount);
@@ -11,7 +11,7 @@ const addFunds = async (req, res) => {
     }
 };
 
-const viewWallet = async (req, res) => {
+ const viewWallet = async (req, res) => {
     try {
         const wallet = await Wallet.findOne({ where: { userId: req.user.id } });
         res.json(wallet);
@@ -19,5 +19,4 @@ const viewWallet = async (req, res) => {
         res.status(500).json({ message: 'Error retrieving wallet', error });
     }
 };
-
-module.exports = { addFunds, viewWallet };
+export default {addFunds,viewWallet}

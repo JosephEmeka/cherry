@@ -1,19 +1,17 @@
 
 
-const User = require('../models/User');
-const Appointment = require('../../appointments/models/appointment');
-const LabTest = require('../models/labTest');
+import User from './modules/users/models/user';
+import Appointment from './modules/appointments/models/appointment';
+import LabTest from './modules/users/models/labTest';
 
 
-const defineUserAssociations = require('../../../core/associations/userAssociations');
-const defineAppointmentAssociations = require('../../../core/associations/appointmentAssociations');
+import defineUserAssociations from './core/associations/userAssociations';
+import defineAppointmentAssociations from './core/associations/appointmentAssociations';
 
 
 defineUserAssociations();
 defineAppointmentAssociations();
 
-module.exports = {
-    User,
+export default {
     appointment: Appointment,
-    LabTest,
 };

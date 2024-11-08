@@ -1,6 +1,6 @@
-const { DataTypes, Model } = require('sequelize');
-const sequelize = require('../config/dbConfig');
-const Wallet = require('./Wallet');
+import { DataTypes, Model } from 'sequelize';
+import sequelize from '../../../config/dbConfig.js';
+import Wallet from './wallet.js';
 
 class Transaction extends Model {}
 
@@ -46,8 +46,7 @@ Transaction.init(
     }
 );
 
-
 Wallet.hasMany(Transaction, { foreignKey: 'walletId' });
 Transaction.belongsTo(Wallet, { foreignKey: 'walletId' });
 
-module.exports = Transaction;
+export default Transaction;

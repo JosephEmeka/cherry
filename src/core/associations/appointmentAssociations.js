@@ -1,10 +1,8 @@
-
-
-const Appointment = require('../models/appointment');
-const LabTest = require('../models/labTest');
+import Appointment from '../../modules/appointments/models/appointment';
+import LabTest from '../../modules/users/models/labTest';
 
 const defineAppointmentAssociations = () => {
     Appointment.hasMany(LabTest, { foreignKey: 'appointmentId', as: 'labTests' });
 };
 
-module.exports = defineAppointmentAssociations;
+export default defineAppointmentAssociations;

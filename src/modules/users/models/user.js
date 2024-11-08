@@ -1,6 +1,6 @@
-const { DataTypes, Model } = require('sequelize');
-const sequelize = require('../config/dbConfig');
-const bcrypt = require('bcryptjs');
+import { DataTypes, Model } from 'sequelize';
+import sequelize from '../../../config/dbConfig.js';
+
 
 class User extends Model {}
 
@@ -76,38 +76,7 @@ User.init(
         modelName: 'User',
         timestamps: true,
         paranoid: true,
-        // hooks: {
-            // beforeCreate: async (user) => {
-            //     if (user.password) {
-            //         user.password = await bcrypt.hash(user.password, 10);
-            //     }
-            // },
-            // beforeUpdate: async (user) => {
-            //
-            //     if (user.changed('password')) {
-            //         user.password = await bcrypt.hash(user.password, 10);
-            //     }
-            // },
-        // },
     }
 );
 
-
-User.prototype.matchPassword = async function (enteredPassword) {
-    return await bcrypt.compare(enteredPassword, this.password);
-};
-
-
-User.prototype.isAdmin = function () {
-    return this.role === 'admin';
-};
-
-User.prototype.isDoctor = function () {
-    return this.role === 'doctor';
-};
-
-User.prototype.isPatient = function () {
-    return this.role === 'patient';
-};
-
-module.exports = User;
+export default User;

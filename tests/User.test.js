@@ -1,8 +1,8 @@
-jest.mock('../src/models/User');
+jest.mock('../src/modules/users/models/user');
 jest.mock('jsonwebtoken');
 
-const { register, login } = require('../src/services/authService');
-const User = require('../src/models/User');
+const { register, login } = require('../src/modules/auth/services/authService');
+const User = require('../src/modules/users/models/user');
 const jwt = require('jsonwebtoken');
 
 describe('Auth Service', () => {

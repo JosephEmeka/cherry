@@ -1,6 +1,6 @@
-const { DataTypes, Model } = require('sequelize');
-const sequelize = require('../config/dbConfig');
-const Patient = require('./Patient');
+import { DataTypes, Model } from 'sequelize';
+import sequelize from '../../../config/dbConfig.js';
+import Patient from '../../users/models/patient.js';
 
 class Wallet extends Model {}
 
@@ -39,12 +39,11 @@ Wallet.init(
         sequelize,
         modelName: 'Wallet',
         timestamps: true,
-        paranoid: true, // Soft delete
+        paranoid: true,
     }
 );
-
 
 Patient.hasOne(Wallet, { foreignKey: 'patientId' });
 Wallet.belongsTo(Patient, { foreignKey: 'patientId' });
 
-module.exports = Wallet;
+export default Wallet;

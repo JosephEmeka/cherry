@@ -1,7 +1,7 @@
-const { LabTest, MedicalRecord } = require('../models');
+const { LabTest, MedicalRecord } = require('../../../index');
 const { uploadFile } = require('../services/uploadService');
 
-// Request a new lab test
+
 const requestLabTest = async (req, res) => {
     const { testName, doctorId, patientId } = req.body;
     try {

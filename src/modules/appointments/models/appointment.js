@@ -1,7 +1,7 @@
-const { DataTypes, Model } = require('sequelize');
-const sequelize = require('../config/dbConfig');
-const Doctor = require('./Doctor');
-const Patient = require('./Patient');
+import { DataTypes, Model } from 'sequelize';
+import sequelize from '../../../config/dbConfig';
+import Doctor from '../../doctors/models/doctor';
+import Patient from '../../users/models/patient';
 
 class Appointment extends Model {}
 
@@ -31,9 +31,12 @@ Appointment.init(
             onDelete: 'CASCADE',
         },
         appointmentDate: {
-            type: DataTypes.DATE,
+            type: DataTypes.DATEONLY,
             allowNull: false,
-            defaultValue: DataTypes.NOW,
+        },
+        startTime: {
+            type: DataTypes.TIME,
+            allowNull: false,
         },
         status: {
             type: DataTypes.ENUM('scheduled', 'completed', 'cancelled'),
@@ -53,10 +56,9 @@ Appointment.init(
     }
 );
 
-
 Doctor.hasMany(Appointment, { foreignKey: 'doctorId' });
-Patient.hasOne(Appointment, { foreignKey: 'patientId' });
+Patient.hasMany(Appointment, { foreignKey: 'patientId' });
 Appointment.belongsTo(Doctor, { foreignKey: 'doctorId' });
 Appointment.belongsTo(Patient, { foreignKey: 'patientId' });
 
-module.exports = Appointment;
+export default Appointment;

@@ -1,12 +1,9 @@
-const { login } = require('../modules/users/controllers/userController');
-const { registerUser } = require('../modules/users/controllers/userController');
-const express = require('express');
-const { uploadProfilePicture } = require('../modules/users/controllers/userController');
-const upload = require('../middlewares/uploadMiddleware');
+import express from 'express';
+import { registerUser, uploadProfilePicture } from '../controllers/userController.js';
+import upload from '../middleware/uploadMiddleware.js';
+
 const router = express.Router();
+router.post('/register', registerUser);
+router.post('/profile-upload', upload.single('profileImage'), uploadProfilePicture);
 
-router.post('/api/users/register', registerUser);
-router.post('/api/users/login', login);
-router.post('/api/users/profile-upload', upload.single('profileImage'), uploadProfilePicture);
-
-module.exports = router;
+export default router;

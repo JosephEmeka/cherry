@@ -1,45 +1,33 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/dbConfig');
-const bcrypt = require('bcryptjs');
-const User = require("./User");
+import { DataTypes } from 'sequelize';
+import sequelize from '../../../config/dbConfig';
+import bcrypt from 'bcryptjs';
+import User from "../../users/models/user";
 
- class Doctor extends User {}
+class Doctor extends User {}
 
-    Doctor.init( {
-
-
+Doctor.init({
     specialty: {
         type: DataTypes.STRING,
         allowNull: true,
     },
-
     workSchedule: {
         type: DataTypes.JSON,
         allowNull: true,
     },
-
-    bio:{
-        type:DataTypes.TEXT
+    bio: {
+        type: DataTypes.TEXT,
     },
-
     available: {
         type: DataTypes.BOOLEAN,
-
-        defaultValue: true
-
+        defaultValue: true,
     },
-
     experience: {
         type: DataTypes.TEXT,
-        allowNull: false
-
+        allowNull: false,
     },
 }, {
-        sequelize: User.sequelize,
-        modelName: 'Doctor',
-    }
-);
+    sequelize: User.sequelize,
+    modelName: 'Doctor',
+});
 
-
-    module.exports = Doctor;
-
+export default Doctor;

@@ -1,9 +1,9 @@
-const { Doctor, LabScientist, Patient } = require('../models');
+import { Doctor } from '../../doctors/models/doctor.js';
+import path from 'path';
+import fs from 'fs';
+import {Model as LabScientist} from "sequelize";
 
-const path = require('path');
-const fs = require('fs');
-
-const uploadFile = (file) => {
+ const uploadFile = (file) => {
     return new Promise((resolve, reject) => {
         const fileName = Date.now() + path.extname(file.originalname);
         const uploadPath = path.join(__dirname, '../uploads', fileName);
@@ -15,8 +15,7 @@ const uploadFile = (file) => {
     });
 };
 
-
-const deleteFile = (filePath) => {
+ const deleteFile = (filePath) => {
     return new Promise((resolve, reject) => {
         fs.unlink(filePath, (err) => {
             if (err) reject(err);
@@ -24,9 +23,6 @@ const deleteFile = (filePath) => {
         });
     });
 };
-
-
-
 
 const shareFileWithUser = async (filePath, userId, userType) => {
     try {
@@ -42,19 +38,11 @@ const shareFileWithUser = async (filePath, userId, userType) => {
 
         if (!user) throw new Error('User not found');
 
-
-        const fileUrl = `http://localhost:3000/uploads/${path.basename(filePath)}`; 
-
+        const fileUrl = `http://localhost:3000/uploads/${path.basename(filePath)}`;
         return { message: `File shared with ${user.name}`, fileUrl };
-
     } catch (error) {
         throw new Error('Error sharing file: ' + error.message);
     }
 };
 
-module.exports = { uploadFile, deleteFile, shareFileWithUser };
-
-
-
-
-
+export default {uploadFile,deleteFile, shareFileWithUser }

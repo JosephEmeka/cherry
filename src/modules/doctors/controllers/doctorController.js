@@ -1,7 +1,7 @@
-const doctorService = require('../../../services/doctorService');
-const {findAll} = require("../../../models/User");
+import doctorService from '../services/doctorService';
+import { findAll } from "../../users/models/user";
 
-const getAppointments = async (req, res, next) => {
+export const getAppointments = async (req, res, next) => {
     try {
         const appointments = await doctorService.getAppointments(req.user.id);
         res.status(200).json(appointments);
@@ -9,7 +9,8 @@ const getAppointments = async (req, res, next) => {
         next(error);
     }
 };
-const viewPatients = async (req, res) => {
+
+export const viewPatients = async (req, res) => {
     try {
         const patients = await findAll({ where: { assignedDoctor: req.user.id } });
         res.status(200).json({ patients });
@@ -17,5 +18,4 @@ const viewPatients = async (req, res) => {
         res.status(500).json({ message: 'Error fetching patients', error });
     }
 };
-
-module.exports = { viewPatients, getAppointments };
+export default { getAppointments, viewPatients}

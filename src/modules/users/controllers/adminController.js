@@ -1,5 +1,5 @@
 
-const { User, Doctor, Appointment } = require('../models/User');
+const { User, Doctor, Appointment } = require('../models/user');
 const {updateUserRole} = require("./adminController");
 
 

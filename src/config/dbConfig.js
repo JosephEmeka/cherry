@@ -1,11 +1,21 @@
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.PG_ADMIN_USERNAME, process.env.PG_ADMIN_PASSWORD, {
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
     host: process.env.DB_HOST || 'localhost',
     dialect: 'postgres',
+    dialectOptions: {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false,
+        },
+    },
     logging: console.log,
 });
+
+
+
+
 
 sequelize.authenticate()
     .then(() => {

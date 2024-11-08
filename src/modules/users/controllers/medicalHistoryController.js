@@ -1,4 +1,4 @@
-const { MedicalRecord, LabTest } = require('../models');
+const { MedicalRecord, LabTest } = require('../../../index');
 const { uploadFile } = require('../services/uploadService');
 
 const viewMedicalHistory = async (req, res) => {
