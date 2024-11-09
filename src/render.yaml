@@ -9,4 +9,4 @@ services:
     runtime: node
     envVars:
       - key: DATABASE_URL
-        value: "postgresql://postgres:BoKIMJFSPFJDLVYVNmNhkhxYqBjndZez@autorack.proxy.rlwy.net:32460/railway"
+        value: ${DATABASE_URL}
