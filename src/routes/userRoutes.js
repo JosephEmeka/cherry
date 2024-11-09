@@ -1,7 +1,7 @@
-const { login } = require('../modules/users/controllers/userController');
-const { registerUser } = require('../modules/users/controllers/userController');
+const { login } = require('../controllers/userController');
+const { registerUser } = require('../controllers/userController');
 const express = require('express');
-const { uploadProfilePicture } = require('../modules/users/controllers/userController');
+const { uploadProfilePicture } = require('../controllers/userController');
 const upload = require('../middlewares/uploadMiddleware');
 const router = express.Router();
 
