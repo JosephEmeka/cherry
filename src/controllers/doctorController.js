@@ -1,5 +1,5 @@
-const doctorService = require('../../../services/doctorService');
-const {findAll} = require("../../../models/User");
+const doctorService = require('../services/doctorService');
+const {findAll} = require("../models/User");
 
 const getAppointments = async (req, res, next) => {
     try {
