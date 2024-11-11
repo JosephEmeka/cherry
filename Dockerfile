@@ -1,20 +1,19 @@
-# Use an official Node.js runtime as the base image
-FROM node:18-alpine
+# Example Dockerfile
+FROM node:14
 
-# Set the working directory inside the container
-WORKDIR /app
-
-# Copy the package.json and package-lock.json files
-COPY package*.json ./
+# Create app directory
+WORKDIR /usr/src/app
 
 # Install app dependencies
+COPY package*.json ./
+
 RUN npm install
 
-# Copy all project files into the container
+# Bundle app source
 COPY . .
 
-# Expose the port the app runs on
-EXPOSE 5000
+# Expose port
+EXPOSE 8080
 
-# Run the app using npm
-CMD ["npm", "run", "start"]
+# Start the app
+CMD ["node", "src/server.js"]
