@@ -13,7 +13,7 @@ User.init(
         },
         name: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         middleName: {
             type: DataTypes.STRING,
@@ -21,7 +21,7 @@ User.init(
         },
         surname: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         email: {
             type: DataTypes.STRING,
@@ -42,7 +42,7 @@ User.init(
         },
         role: {
             type: DataTypes.ENUM('admin', 'doctor', 'patient'),
-            allowNull: false,
+            allowNull: true,
             defaultValue: 'patient',
         },
         age: {
@@ -55,7 +55,7 @@ User.init(
         },
         phoneNumber: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
         },
         address: {
             type: DataTypes.STRING,
@@ -67,7 +67,7 @@ User.init(
         },
         status: {
             type: DataTypes.ENUM('active', 'inactive', 'suspended'),
-            allowNull: false,
+            allowNull: true,
             defaultValue: 'active',
         },
     },
