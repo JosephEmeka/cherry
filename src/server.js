@@ -1,9 +1,20 @@
 const express = require('express');
 const sequelize = require('./config/dbConfig');
 const app = express(); // Define the app instance
+const cors = require('cors');
 
 require('dotenv').config();
 
+
+app.use(cors({
+    origin: 'http://localhost:5000',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+}));
+
+app.get('/api', (req, res) => {
+    res.json({ message: "CORS enabled!" });
+});
 
 
 const PORT = process.env.PGPORT || 5000;
