@@ -13,6 +13,7 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
+app.options('*', cors());
 
 app.get('/api', (req, res) => {
     res.json({ message: "CORS enabled!" });
