@@ -1,33 +1,23 @@
-name: Node.js CI with Docker Deploy
-
+name: Build and Deploy Backend
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-
+    branches:
+      - in-dev
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [16.x]
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '14'
 
       - name: Install dependencies
         run: npm install
-
-      - name: Make Jest executable
-        run: chmod +x node_modules/.bin/jest
 
       - name: Run tests
         run: npm test
@@ -37,7 +27,7 @@ jobs:
 
       - name: Docker build
         run: |
-          docker build -t myapp:latest .
+          docker build -t cherrybackend .
 
       - name: Push Docker images to Docker Hub
         env:
@@ -45,5 +35,5 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
           echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
-          docker tag myapp:latest ${DOCKER_USERNAME}/myapp:latest
-          docker push ${DOCKER_USERNAME}/myapp:latest
+          docker tag cherrybackend:latest ${DOCKER_USERNAME}/cherrybackend:latest
+          docker push ${DOCKER_USERNAME}/cherrybackend:latest
